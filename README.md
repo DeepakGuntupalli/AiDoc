@@ -12,6 +12,15 @@ A powerful document search assistant built with Streamlit, LangChain, and Huggin
 - **Source Attribution**: View the document sources for each answer
 - **Persistent Storage**: Vector store is saved locally for quick reloading
 
+## 🏢 Enterprise-Grade Features
+
+- Modular backend architecture
+- Environment-based configuration
+- Persistent vector database
+- Context-aware responses
+- Source-grounded answers
+- Scalable ingestion pipeline
+
 ## 📁 Project Structure
 
 ```
