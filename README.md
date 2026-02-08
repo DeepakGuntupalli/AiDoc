@@ -1,13 +1,13 @@
 # 📚 AI Document Search Assistant
 
-A powerful document search assistant built with Streamlit, LangChain, and Grok LLM. Upload documents, ask questions, and get AI-powered answers based on your document content.
+A powerful document search assistant built with Streamlit, LangChain, and HuggingFace LLM. Upload documents, ask questions, and get AI-powered answers based on your document content.
 
 ## ✨ Features
 
 - **Multi-format Document Support**: Upload PDF, TXT, and DOCX files
 - **Intelligent Text Processing**: Automatic text extraction and chunking
 - **Semantic Search**: FAISS-powered vector similarity search
-- **Grok LLM Integration**: Powered by xAI's Grok for intelligent responses
+- **HuggingFace LLM Integration**: Powered by HuggingFace Inference API for intelligent responses
 - **Chat Interface**: Conversational UI with chat history
 - **Source Attribution**: View the document sources for each answer
 - **Persistent Storage**: Vector store is saved locally for quick reloading
@@ -23,7 +23,7 @@ aidoc/
 │   ├── text_processor.py      # Text chunking and preprocessing
 │   ├── embeddings.py          # HuggingFace embedding generation
 │   ├── vector_store.py        # FAISS vector store operations
-│   ├── llm.py                 # Grok LLM integration
+│   ├── llm.py                 # HuggingFace LLM integration
 │   └── qa_chain.py            # Question-answering chain
 ├── data/
 │   └── vector_store/          # FAISS index storage
@@ -38,13 +38,14 @@ aidoc/
 ### Prerequisites
 
 - Python 3.9 or higher
-- Grok API key from [xAI Console](https://console.x.ai/)
+- HuggingFace API key from [HuggingFace Settings](https://huggingface.co/settings/tokens)
 
 ### Installation
 
-1. **Clone or navigate to the project directory**:
+1. **Clone the repository**:
    ```bash
-   cd aidoc
+   git clone https://github.com/DeepakGuntupalli/AiDoc.git
+   cd AiDoc
    ```
 
 2. **Create a virtual environment** (recommended):
@@ -69,7 +70,7 @@ aidoc/
    copy .env.example .env    # Windows
    cp .env.example .env      # macOS/Linux
    
-   # Edit .env and add your Grok API key
+   # Edit .env and add your HuggingFace API key
    ```
 
 5. **Run the application**:
@@ -85,20 +86,19 @@ aidoc/
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `GROK_API_KEY` | Your Grok API key (required) | - |
-| `GROK_API_BASE` | Grok API base URL | `https://api.x.ai/v1` |
-| `GROK_MODEL` | Grok model to use | `grok-beta` |
+| `HF_API_KEY` | Your HuggingFace API key (required) | - |
+| `HF_MODEL` | HuggingFace model to use | `microsoft/Phi-3-mini-4k-instruct` |
 | `EMBEDDING_MODEL` | HuggingFace embedding model | `all-MiniLM-L6-v2` |
 | `VECTOR_STORE_PATH` | Path to store FAISS index | `./data/vector_store` |
 | `CHUNK_SIZE` | Text chunk size | `1000` |
 | `CHUNK_OVERLAP` | Overlap between chunks | `200` |
 
-### Getting a Grok API Key
+### Getting a HuggingFace API Key
 
-1. Visit [xAI Console](https://console.x.ai/)
+1. Visit [HuggingFace](https://huggingface.co/)
 2. Sign up or log in
-3. Navigate to API Keys section
-4. Create a new API key
+3. Navigate to [Settings > Access Tokens](https://huggingface.co/settings/tokens)
+4. Create a new access token
 5. Copy the key to your `.env` file
 
 ## 📖 Usage Guide
@@ -124,14 +124,14 @@ aidoc/
 - **Use natural language**: Ask questions as you would to a human
 - **Check sources**: Always verify answers against the source documents
 
-## 🛠️ Technical Details
+## 🔧 Technical Details
 
 ### Tech Stack
 
 - **Frontend**: Streamlit
 - **Backend**: Python
 - **AI Framework**: LangChain
-- **LLM**: Grok (xAI)
+- **LLM**: HuggingFace Inference API
 - **Vector Database**: FAISS
 - **Embeddings**: HuggingFace Sentence Transformers
 
@@ -151,8 +151,8 @@ aidoc/
          │                       │
          ▼                       ▼
 ┌─────────────────┐     ┌─────────────────┐
-│   Grok LLM      │     │  Embedding      │
-│   API           │     │  Manager        │
+│   HuggingFace   │     │  Embedding      │
+│   LLM API       │     │  Manager        │
 └─────────────────┘     └────────┬────────┘
                                  │
                                  ▼
@@ -169,15 +169,19 @@ aidoc/
 3. **Embedding Generation**: Each chunk is converted to a vector embedding
 4. **Vector Storage**: Embeddings are stored in FAISS for fast retrieval
 5. **Query Processing**: User questions are embedded and matched against stored vectors
-6. **Response Generation**: Relevant chunks are sent to Grok LLM for answer generation
+6. **Response Generation**: Relevant chunks are sent to HuggingFace LLM for answer generation
 
-## 🔧 Troubleshooting
+## ❓ Troubleshooting
 
 ### Common Issues
 
-**"Grok API key is required"**
-- Ensure your `.env` file exists and contains a valid `GROK_API_KEY`
+**"HuggingFace API key is required"**
+- Ensure your `.env` file exists and contains a valid `HF_API_KEY`
 - Check that the API key is correct (no extra spaces)
+
+**"Model not supported" error**
+- Some models require a Pro subscription on HuggingFace
+- Try using a different model like `microsoft/Phi-3-mini-4k-instruct`
 
 **"Error loading embedding model"**
 - First run may take time to download the model
@@ -206,6 +210,9 @@ This project is open source and available under the MIT License.
 
 Contributions are welcome! Please feel free to submit issues or pull requests.
 
----
+## 👤 Author
 
-Built with ❤️ using Streamlit, LangChain, and Grok
+**Deepak Guntupalli**
+
+- GitHub: [@DeepakGuntupalli](https://github.com/DeepakGuntupalli)
+
