@@ -1,24 +1,23 @@
 # Core dependencies
-streamlit==1.31.0
-python-dotenv==1.0.0
+streamlit>=1.31.0
+python-dotenv>=1.0.0
 
 # LangChain
-langchain==0.1.9
-langchain-community==0.0.24
-langchain-core==0.1.27
+langchain>=0.1.9
+langchain-community>=0.0.24
+langchain-core>=0.1.27
+langchain-text-splitters>=0.0.1
 
 # Document processing
-pypdf==4.0.1
-python-docx==1.1.0
-unstructured==0.12.4
+pypdf>=4.0.1
+python-docx>=1.1.0
 
 # Embeddings and Vector Store
-sentence-transformers==2.3.1
-faiss-cpu==1.7.4
+sentence-transformers>=2.3.1
+faiss-cpu>=1.7.4
 
-# HTTP client for Grok API
-openai==1.12.0
-httpx==0.26.0
+# HuggingFace
+huggingface-hub>=0.20.0
 
 # Utilities
-tiktoken==0.6.0
+tiktoken>=0.6.0
