@@ -90,14 +90,21 @@ def initialize_session_state():
 
 
 def get_config():
-    """Get configuration from environment variables."""
+    """Get configuration from environment variables or Streamlit secrets."""
+    # Try Streamlit secrets first (for Streamlit Cloud), then fall back to env vars
+    def get_secret(key, default=""):
+        try:
+            return st.secrets.get(key, os.getenv(key, default))
+        except Exception:
+            return os.getenv(key, default)
+    
     return {
-        "hf_api_key": os.getenv("HF_API_KEY", ""),
-        "hf_model": os.getenv("HF_MODEL", "mistralai/Mistral-7B-Instruct-v0.2"),
-        "embedding_model": os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2"),
-        "vector_store_path": os.getenv("VECTOR_STORE_PATH", "./data/vector_store"),
-        "chunk_size": int(os.getenv("CHUNK_SIZE", "1000")),
-        "chunk_overlap": int(os.getenv("CHUNK_OVERLAP", "200"))
+        "hf_api_key": get_secret("HF_API_KEY", ""),
+        "hf_model": get_secret("HF_MODEL", "microsoft/Phi-3-mini-4k-instruct"),
+        "embedding_model": get_secret("EMBEDDING_MODEL", "all-MiniLM-L6-v2"),
+        "vector_store_path": get_secret("VECTOR_STORE_PATH", "./data/vector_store"),
+        "chunk_size": int(get_secret("CHUNK_SIZE", "1000")),
+        "chunk_overlap": int(get_secret("CHUNK_OVERLAP", "200"))
     }
 
 
