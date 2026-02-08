@@ -214,5 +214,3 @@ Contributions are welcome! Please feel free to submit issues or pull requests.
 
 **Deepak Guntupalli**
 
-- GitHub: [@DeepakGuntupalli](https://github.com/DeepakGuntupalli)
-
